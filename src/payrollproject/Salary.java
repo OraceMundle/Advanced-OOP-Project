@@ -128,9 +128,23 @@ public class Salary extends Employee {
         //Insert calculation here
         return 10;
     }
-        
-        
-        
+    public int calGrossSalary(){
+        //insert calculation
+        return 100;
+    }
+    public int calNhtContribution(){
+        //insert calculation
+        return 1000;
+    }
+    public int calTotalDeduction(){
+        //insert calculation
+        return 10000;
+    }
+    public int calNetPay(){
+        //insert calculation
+        return 100000;
+    }
+    //End Custom Methods    
 
 
 

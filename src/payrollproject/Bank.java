@@ -16,7 +16,8 @@ public class Bank {
     private String name;
     private String accounttype;
     private String accountnumber;
-
+    
+    //Start Constructors
     public Bank() {
     }
     
@@ -26,7 +27,9 @@ public class Bank {
         this.accounttype = accounttype;
         this.accountnumber = accountnumber;
     }
+    //End Constructors
 
+    //Start Setters
     public void setBankinfoid(int bankinfoid) {
         this.bankinfoid = bankinfoid;
     }
@@ -42,7 +45,9 @@ public class Bank {
     public void setAccountnumber(String accountnumber) {
         this.accountnumber = accountnumber;
     }
-
+    //End Setters
+    
+    //Start Getters
     public int getBankinfoid() {
         return bankinfoid;
     }
@@ -57,6 +62,12 @@ public class Bank {
 
     public String getAccountnumber() {
         return accountnumber;
+    }
+    //End Getters
+    
+    //Start Custom Methods
+    public void display (){
+        
     }
 
 

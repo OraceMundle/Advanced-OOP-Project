@@ -24,7 +24,9 @@ public class Position {
 
                 return NoOfEmployee;
         }
-
+        
+        //Start Constructors
+        
     public Position() {
     }
 
@@ -35,7 +37,10 @@ public class Position {
         this.monthlyrate = monthlyrate;
         this.workingdayspermonth = workingdayspermonth;
     }
+    
+    //End Constructors
 
+    //Start Setters
     public void setPositionid(int positionid) {
         this.positionid = positionid;
     }
@@ -55,7 +60,9 @@ public class Position {
     public void setWorkingdayspermonth(int workingdayspermonth) {
         this.workingdayspermonth = workingdayspermonth;
     }
+    //End Setters
 
+    //Start Getters
     public int getPositionid() {
         return positionid;
     }
@@ -75,8 +82,12 @@ public class Position {
     public int getWorkingdayspermonth() {
         return workingdayspermonth;
     }
-        
+    //End Getters    
     
+    //Start Custom Methods
+    public void display(){
+        
+    }
 
 
 }// end of marketing

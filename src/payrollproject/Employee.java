@@ -22,7 +22,8 @@ public class Employee {
     private int bankinfoid;
     private int userid;
     private int salaryid;
-
+    
+    //Start Constructors
     public Employee() {
     }
 
@@ -39,7 +40,9 @@ public class Employee {
         this.userid = userid;
         this.salaryid = salaryid;
     }
-
+    //End Constructors
+    
+    //Start Setters
     public void setEmployeeid(int employeeid) {
         this.employeeid = employeeid;
     }
@@ -83,7 +86,9 @@ public class Employee {
     public void setSalaryid(int salaryid) {
         this.salaryid = salaryid;
     }
-
+    //End Setters
+    
+    //Start Getters
     public int getEmployeeid() {
         return employeeid;
     }
@@ -127,7 +132,13 @@ public class Employee {
     public int getSalaryid() {
         return salaryid;
     }
+    //End Getters
     
+    //Start Custom Methods
+    
+    public void display(){
+        
+    }
     
            
 
