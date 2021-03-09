@@ -125,24 +125,24 @@ public class Salary extends Employee {
         
     }
     public int calOvertTimePay(){
-        //Insert calculation here
+        //insert calc
         return 10;
     }
     public int calGrossSalary(){
-        //insert calculation
+        //insert calc
         return 100;
     }
     public int calNhtContribution(){
-        //insert calculation
-        return 1000;
+        //insert calc
+        return nhtcontribution;
     }
     public int calTotalDeduction(){
-        //insert calculation
-        return 10000;
+        totaldeduction = nhtcontribution; 
+        return totaldeduction;
     }
     public int calNetPay(){
-        //insert calculation
-        return 100000;
+        netpay = grosssalary - totaldeduction; 
+        return netpay;
     }
     //End Custom Methods    
 
