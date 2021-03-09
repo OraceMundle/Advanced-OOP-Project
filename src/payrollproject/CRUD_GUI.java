@@ -5,6 +5,9 @@
  */
 package payrollproject;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.*;
 /**
  *
  * @author 18764
@@ -16,6 +19,25 @@ public class CRUD_GUI extends javax.swing.JFrame {
      */
     public CRUD_GUI() {
         initComponents();
+        connect ();
+    }
+    Connection conn;
+    
+    PreparedStatement state;
+               
+            
+    public void connect ()
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("","",""); //insert database URL, username, password
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
 
     /**
@@ -53,39 +75,38 @@ public class CRUD_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        panel_payrollapp.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Details"));
+
+        label_employeeID.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_employeeID.setText("Employee ID:");
 
+        label_fname.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_fname.setText("First Name:");
 
+        label_mname.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_mname.setText("Middle Name:");
 
+        label_lname.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_lname.setText("Last Name:");
 
+        label_dob.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_dob.setText("D.O.B.:");
 
+        label_contact.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_contact.setText("Contact #:");
 
+        label_status.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_status.setText("Status:");
 
+        label_address.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_address.setText("Address:");
 
-        textfield_fname.setText("jTextField1");
-
-        textfield_mname.setText("jTextField1");
-
-        textfield_lname.setText("jTextField1");
-
-        textfield_dob.setText("jTextField1");
-
-        textfield_status.setText("jTextField1");
-
-        textfield_address.setText("jTextField1");
-
-        textfield_contact.setText("jTextField1");
-
-        combobox_empID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btn_add.setText("Add Record");
+        btn_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_addActionPerformed(evt);
+            }
+        });
 
         btn_update.setText("Update Record");
 
@@ -123,10 +144,10 @@ public class CRUD_GUI extends javax.swing.JFrame {
             panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_payrollappLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panel_payrollappLayout.createSequentialGroup()
                         .addComponent(label_employeeID)
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(combobox_empID, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_payrollappLayout.createSequentialGroup()
                         .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,10 +182,10 @@ public class CRUD_GUI extends javax.swing.JFrame {
             panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_payrollappLayout.createSequentialGroup()
                 .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_employeeID)
                     .addComponent(label_contact)
                     .addComponent(textfield_contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combobox_empID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combobox_empID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_employeeID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_search)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -175,20 +196,24 @@ public class CRUD_GUI extends javax.swing.JFrame {
                     .addComponent(textfield_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_address)
-                    .addComponent(label_mname)
                     .addGroup(panel_payrollappLayout.createSequentialGroup()
-                        .addComponent(textfield_mname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textfield_lname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label_lname))
-                        .addGap(18, 18, 18)
-                        .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textfield_dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label_dob)))
-                    .addComponent(textfield_address, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_mname)
+                            .addGroup(panel_payrollappLayout.createSequentialGroup()
+                                .addComponent(textfield_mname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textfield_lname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label_lname))
+                                .addGap(18, 18, 18)
+                                .addGroup(panel_payrollappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textfield_dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label_dob)))
+                            .addComponent(textfield_address, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(panel_payrollappLayout.createSequentialGroup()
+                        .addComponent(label_address)
+                        .addGap(42, 42, 42)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -208,7 +233,7 @@ public class CRUD_GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(panel_payrollapp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +246,29 @@ public class CRUD_GUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
+        // TODO add your handling code here:
+        
+       /* String fname = textfield_fname.getText();
+        String mname = textfield_mname.getText();
+        String lname = textfield_lname.getText();
+        String dob = textfield_dob.getText();
+        String status = textfield_status.getText();
+        String contact = textfield_contact.getText();
+        String address = textfield_address.getText();
+        
+        state = conn.prepareStatement ("insert into **tablename(c1, c2, c3, c4, c5, c6, c7)values(?,?,?,?,?,?,?"); //input table name and column names
+        state.setString(1, fname);
+        state.setString(2, mname);
+        state.setString(3, lname);
+        state.setString(4, dob);
+        state.setString(5, status);
+        state.setString(6, contact);
+        state.setString(7, address);*/
+    }//GEN-LAST:event_btn_addActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,7 +281,7 @@ public class CRUD_GUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

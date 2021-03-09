@@ -12,8 +12,9 @@ package payrollproject;
 public class Employee {
     
     private int employeeid;
-    private String lastname;
+    private String lastname;    
     private String middlename;
+    private String firstname;
     private String dateofbirth;
     private String address;
     private String contact;
@@ -27,10 +28,11 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int employeeid, String lastname, String middlename, String dateofbirth, String address, String contact, String status, int positionid, int bankinfoid, int userid, int salaryid) {
+    public Employee(int employeeid, String lastname, String middlename, String firstname, String dateofbirth, String address, String contact, String status, int positionid, int bankinfoid, int userid, int salaryid) {
         this.employeeid = employeeid;
         this.lastname = lastname;
         this.middlename = middlename;
+        this.firstname = firstname;
         this.dateofbirth = dateofbirth;
         this.address = address;
         this.contact = contact;
@@ -41,6 +43,10 @@ public class Employee {
         this.salaryid = salaryid;
     }
     //End Constructors
+
+   Employee(String lastname, String firstname, String middlename, String dateofbirth, String address, String contact, String status) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     //Start Setters
     public void setEmployeeid(int employeeid) {
@@ -53,6 +59,10 @@ public class Employee {
 
     public void setMiddlename(String middlename) {
         this.middlename = middlename;
+    }
+    
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public void setDateofbirth(String dateofbirth) {
@@ -99,6 +109,10 @@ public class Employee {
 
     public String getMiddlename() {
         return middlename;
+    }
+    
+    public String getFirstname() {
+        return firstname;
     }
 
     public String getDateofbirth() {
