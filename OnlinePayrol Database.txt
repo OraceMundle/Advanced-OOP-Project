@@ -1,0 +1,12 @@
+Created!
+You have successfully created a new database. The details are below.
+
+Username: ECptDTpM3O
+
+Database name: ECptDTpM3O
+
+Password: 7dOfAiW83g
+
+Server: remotemysql.com
+
+Port: 3306
